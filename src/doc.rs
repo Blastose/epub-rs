@@ -647,7 +647,7 @@ impl<R: Read + Seek> EpubDoc<R> {
             let item = r.borrow();
             if item.name.local_name == "meta" {
                 if let (Some(k), Some(v)) = (item.get_attr("name"), item.get_attr("content")) {
-                    if k == "cover" {
+                    if k == "cover" && self.cover_id.is_none() {
                         self.cover_id = Some(v.clone());
                     }
                     self.metadata.entry(k).or_default().push(v);

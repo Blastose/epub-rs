@@ -615,7 +615,7 @@ impl<R: Read + Seek> EpubDoc<R> {
                 if let (Some(id), Some(property)) =
                     (item.get_attr("id"), item.get_attr("properties"))
                 {
-                    if property == "cover-image" {
+                    if property.starts_with("cover-image") {
                         self.cover_id = Some(id);
                     }
                 }
